@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>parham</title>
+
+<style>
+body{
+    font-family: sans-serif;
+    
+}
+*{
+    padding: 0px;
+    margin: 0px;
+}
+/* .mother-box{
+    background: linear-gradient(rgba(12, 12, 12, 0.336),rgba(12, 12, 12, 0.336)) ,url(../imgs/1306291_461.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding: 300px;
+
+} */
+.child{
+    margin: 0px 50px;
+    text-align: center;
+}
+.child p{
+    color: aliceblue;
+    font-size: 30px;
+}
+.link-box{
+    margin: 20px;
+}
+.link1{
+    color: aliceblue;
+    text-decoration: none;
+    border: 1px solid rgb(27, 0, 182);
+    background-color:rgb(27, 0, 182) ;
+    border-radius: 7px;
+    padding: 15px 30px;
+}
+.link1:hover{
+    color: aliceblue;
+    text-decoration: none;
+    border: 1px solid rgb(20, 2, 126);
+    background-color:rgb(20, 2, 126);
+    border-radius: 7px;
+    padding: 15px 30px;
+}
+.link2{
+    color: aliceblue;
+    text-decoration: none;
+    border: 1px solid rgb(247, 247, 247);
+
+    border-radius: 7px;
+    padding: 15px 30px;
+}
+.link2:hover{
+    color: aliceblue;
+    background-color:rgba(0, 0, 0, 0.103) ;
+    text-decoration: none;
+    border: 1px solid rgb(251, 251, 252);
+    border-radius: 7px;
+    padding: 15px 30px;
+    }
+.par{
+    color: aliceblue;
+position: relative;
+top: -250px;
+right: 100px;
+text-transform: capitalize;
+font-weight:100px ;
+border-radius: 7px;
+}
+.father-box{
+    padding: 10vh;
+}
+.servises{
+    margin: 0px 8%;
+    display: flex;
+    margin-left: 14%;
+}
+.servis{
+    width: 28%;
+    text-align: center;
+}
+.icon1{
+    width: 50px;
+    color: rgb(62, 62, 214);
+    
+}
+.servis h3{
+    font-size: 40px;
+    margin-top:10px ;
+}
+.servis a{
+    font-size: 15px;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    
+
+}
+.servis p{
+    margin-top: 15px;
+    color: gray;
+}
+.servis a img{
+    font-size: 15px;
+    position: relative;
+    top: 8px; 
+    transition: all 200ms;
+
+}
+.servis a:hover img{
+    font-size: 15px;
+    position: relative;
+    top: 8px;
+    padding-left:8px ;
+}
+
+/* ===== بگراند لپ‌تاپ سه‌بعدی ===== */
+html, body { min-height: 100%; }
+body{
+    background: radial-gradient(120% 90% at 70% 10%, #0d2250 0%, #060b18 60%);
+    background-attachment: fixed;
+}
+#stage{
+    position: fixed; inset: 0; width: 100%; height: 100%;
+    z-index: -1;            /* زیر همه‌ی محتوا */
+    display: block; pointer-events: none;
+}
+
+/* ===== ریسپانسیو ===== */
+:root{ --hero-top: clamp(130px, 28vh, 300px); }
+.mother-box{ min-height: 100vh; padding-top: var(--hero-top); box-sizing: border-box; }
+.par{ top: calc(50px - var(--hero-top)); right: clamp(0px, 7vw, 100px); }
+.child{ margin: 0 clamp(16px, 5vw, 50px); }
+.child p{ font-size: clamp(22px, 5vw, 30px); }
+.link-box{ display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin: 20px 0; }
+.father-box{ background: #fff; position: relative; padding: 10vh clamp(16px, 4vw, 10vh); }
+.servis h3{ font-size: clamp(26px, 4.2vw, 40px); }
+.servis img.icon1{ max-width: 100%; }
+
+@media (max-width: 900px){
+    .servises{ flex-direction: column; align-items: center; margin: 0 auto; gap: 48px; }
+    .servis{ width: 100%; max-width: 420px; }
+    .servis p br{ display: none; }
+}
+@media (max-width: 480px){
+    .par{ right: 0; text-align: center; }
+    .link1, .link2{ display: block; width: 100%; text-align: center; box-sizing: border-box; }
+    .link-box{ flex-direction: column; align-items: stretch; padding: 0 12px; }
+}
+@media (prefers-reduced-motion: reduce){ .servis a:hover img{ transition: none; } }
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var cv = document.createElement('canvas');
+  cv.id = 'stage'; cv.setAttribute('aria-hidden', 'true');
+  document.body.insertBefore(cv, document.body.firstChild);
+
+  var renderer = new THREE.WebGLRenderer({ canvas: cv, antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.1;
+
+  var scene = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(32, 1, 0.1, 100);
+  camera.position.set(0, 2.4, 8);
+
+  // ---- محیط انعکاسی (سافت‌باکس‌ها) برای فلز واقعی ----
+  var envScene = new THREE.Scene();
+  envScene.background = new THREE.Color(0x090d18);
+  function panel(w, h, color, k, x, y, z) {
+    var m = new THREE.Mesh(new THREE.PlaneGeometry(w, h),
+      new THREE.MeshBasicMaterial({ color: new THREE.Color(color).multiplyScalar(k), side: THREE.DoubleSide }));
+    m.position.set(x, y, z); m.lookAt(0, 0, 0); envScene.add(m);
+  }
+  panel(10, 4, 0xffffff, 6, 0, 8, 2);
+  panel(4, 8, 0x6fb6ff, 4, -9, 2, 0);
+  panel(4, 8, 0xa98bff, 3, 9, 2, -2);
+  panel(8, 3, 0xffffff, 2, 0, 1, -9);
+  var pm = new THREE.PMREMGenerator(renderer);
+  scene.environment = pm.fromScene(envScene, 0.04).texture;
+  pm.dispose();
+
+  var key = new THREE.DirectionalLight(0xffffff, 0.7); key.position.set(4, 6, 5); scene.add(key);
+  var rim = new THREE.PointLight(0x2aa8ff, 1.0, 20); rim.position.set(-5, 2, -3); scene.add(rim);
+
+  // ---- متریال‌ها ----
+  var alu = new THREE.MeshStandardMaterial({ color: 0xc9d1dc, metalness: 1, roughness: 0.28 });
+  var darkM = new THREE.MeshStandardMaterial({ color: 0x0a0d15, metalness: 0.2, roughness: 0.7 });
+  var keyM = new THREE.MeshStandardMaterial({ color: 0x141a27, metalness: 0.1, roughness: 0.55 });
+  var glassM = new THREE.MeshStandardMaterial({ color: 0x020305, metalness: 0.3, roughness: 0.12 });
+
+  // ---- ابزار: ورقه‌ی گوشه‌گرد با لبه‌ی پخ ----
+  function rr(w, h, r) {
+    var s = new THREE.Shape(), x = -w / 2, y = -h / 2;
+    s.moveTo(x + r, y); s.lineTo(x + w - r, y); s.quadraticCurveTo(x + w, y, x + w, y + r);
+    s.lineTo(x + w, y + h - r); s.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    s.lineTo(x + r, y + h); s.quadraticCurveTo(x, y + h, x, y + h - r);
+    s.lineTo(x, y + r); s.quadraticCurveTo(x, y, x + r, y);
+    return s;
+  }
+  function slab(w, h, d, r, b, mat) {
+    var geo = new THREE.ExtrudeGeometry(rr(w - 2 * b, h - 2 * b, r), {
+      depth: d - 2 * b, bevelEnabled: true, bevelThickness: b, bevelSize: b, bevelSegments: 3, curveSegments: 10
+    });
+    geo.rotateX(-Math.PI / 2);
+    geo.translate(0, -(d / 2 - b), 0);
+    return new THREE.Mesh(geo, mat);
+  }
+
+  var laptop = new THREE.Group();
+
+  // بدنه
+  laptop.add(slab(3.2, 2.2, 0.13, 0.14, 0.03, alu));
+
+  // محل کیبورد + نور پس‌زمینه
+  var deck = slab(2.98, 1.22, 0.02, 0.05, 0.005, darkM); deck.position.set(0, 0.066, -0.35); laptop.add(deck);
+  var glow = new THREE.Mesh(new THREE.PlaneGeometry(2.9, 1.14),
+    new THREE.MeshBasicMaterial({ color: 0x2d6bff, transparent: true, opacity: 0.55 }));
+  glow.rotation.x = -Math.PI / 2; glow.position.set(0, 0.0785, -0.37); laptop.add(glow);
+
+  // کیبورد با چیدمان واقعی (عرض هر کلید به واحد)
+  var rows = [
+    { z: -0.88, h: 0.09, w: [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1] },
+    { z: -0.72, h: 0.15, w: [1,1,1,1,1,1,1,1,1,1,1,1,1,2] },
+    { z: -0.545, h: 0.15, w: [1.5,1,1,1,1,1,1,1,1,1,1,1,1,1.5] },
+    { z: -0.37, h: 0.15, w: [1.75,1,1,1,1,1,1,1,1,1,1,2.25] },
+    { z: -0.195, h: 0.15, w: [2.25,1,1,1,1,1,1,1,1,1,1,2.75] },
+    { z: -0.02, h: 0.15, w: [1.25,1.25,1.25,6.25,1.25,1.25,1.25,1.25] }
+  ];
+  var unit = 2.84 / 15, boxG = new THREE.BoxGeometry(1, 1, 1);
+  rows.forEach(function (row) {
+    var total = row.w.reduce(function (a, b) { return a + b; }, 0), x = -total * unit / 2;
+    row.w.forEach(function (w) {
+      var k = new THREE.Mesh(boxG, keyM);
+      k.scale.set(w * unit - 0.018, 0.02, row.h);
+      k.position.set(x + w * unit / 2, 0.09, row.z);
+      laptop.add(k); x += w * unit;
+    });
+  });
+
+  // ترک‌پد
+  var pad = slab(1.1, 0.68, 0.012, 0.05, 0.004,
+    new THREE.MeshStandardMaterial({ color: 0x9aa5b8, metalness: 1, roughness: 0.15 }));
+  pad.position.set(0, 0.07, 0.68); laptop.add(pad);
+
+  // لولا و درب
+  var hinge = new THREE.Group(); hinge.position.set(0, 0.105, -1.08); laptop.add(hinge);
+  var barrel = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 2.7, 24), darkM);
+  barrel.rotation.z = Math.PI / 2; hinge.add(barrel);
+
+  var lid = slab(3.2, 2.1, 0.07, 0.14, 0.025, alu); lid.position.set(0, 0.035, 1.05 + 0.02); hinge.add(lid);
+
+  var bezel = new THREE.Mesh(new THREE.ShapeGeometry(rr(3.04, 1.98, 0.08), 12), glassM);
+  bezel.rotation.x = Math.PI / 2; bezel.position.set(0, -0.0008, 1.07); hinge.add(bezel);
+
+  // صفحه‌ی نمایش (والپیپر + پنجره + تسک‌بار، بدون هیچ نوشته‌ای)
+  var sc = document.createElement('canvas'); sc.width = 1024; sc.height = 640;
+  var g = sc.getContext('2d');
+  function rrect(x, y, w, h, r) {
+    g.beginPath(); g.moveTo(x + r, y); g.arcTo(x + w, y, x + w, y + h, r); g.arcTo(x + w, y + h, x, y + h, r);
+    g.arcTo(x, y + h, x, y, r); g.arcTo(x, y, x + w, y, r); g.closePath();
+  }
+  var gr = g.createLinearGradient(0, 0, 1024, 640);
+  gr.addColorStop(0, '#0a2a7a'); gr.addColorStop(0.55, '#4a2bd6'); gr.addColorStop(1, '#16b5ff');
+  g.fillStyle = gr; g.fillRect(0, 0, 1024, 640);
+  for (var i = 0; i < 4; i++) {
+    g.fillStyle = 'rgba(255,255,255,' + (0.05 + i * 0.015) + ')';
+    g.beginPath(); g.moveTo(0, 360 + i * 50);
+    g.bezierCurveTo(300, 190 + i * 60, 620, 520 - i * 30, 1024, 300 + i * 50);
+    g.lineTo(1024, 640); g.lineTo(0, 640); g.closePath(); g.fill();
+  }
+  g.fillStyle = 'rgba(255,255,255,0.16)'; rrect(230, 100, 564, 340, 18); g.fill();
+  g.fillStyle = 'rgba(255,255,255,0.22)'; rrect(230, 100, 564, 40, 18); g.fill();
+  ['#ff5f57', '#febc2e', '#28c840'].forEach(function (c, n) {
+    g.fillStyle = c; g.beginPath(); g.arc(256 + n * 26, 120, 7, 0, 6.2832); g.fill();
+  });
+  g.fillStyle = 'rgba(255,255,255,0.35)';
+  for (var j = 0; j < 5; j++) { rrect(262, 170 + j * 52, 200 + (j * 83) % 260, 16, 8); g.fill(); }
+  g.fillStyle = 'rgba(255,255,255,0.28)'; rrect(560, 170, 200, 120, 14); g.fill();
+  g.fillStyle = 'rgba(10,15,35,0.55)'; rrect(292, 578, 440, 46, 16); g.fill();
+  for (var t = 0; t < 7; t++) { g.fillStyle = 'rgba(255,255,255,0.8)'; rrect(318 + t * 58, 588, 26, 26, 8); g.fill(); }
+  var tex = new THREE.CanvasTexture(sc); tex.encoding = THREE.sRGBEncoding; tex.anisotropy = 8;
+  var screen = new THREE.Mesh(new THREE.PlaneGeometry(2.86, 1.78),
+    new THREE.MeshBasicMaterial({ map: tex, toneMapped: false }));
+  screen.rotation.x = Math.PI / 2; screen.position.set(0, -0.0016, 1.07); hinge.add(screen);
+
+  var cam = new THREE.Mesh(new THREE.CircleGeometry(0.014, 16), new THREE.MeshBasicMaterial({ color: 0x1a2a44 }));
+  cam.rotation.x = Math.PI / 2; cam.position.set(0, -0.0018, 2.02); hinge.add(cam);
+
+  laptop.position.y = -0.2;
+  scene.add(laptop);
+
+  // سایه‌ی نرم زیر لپ‌تاپ
+  var shc = document.createElement('canvas'); shc.width = shc.height = 256;
+  var sg = shc.getContext('2d'), rg = sg.createRadialGradient(128, 128, 0, 128, 128, 128);
+  rg.addColorStop(0, 'rgba(0,0,0,0.65)'); rg.addColorStop(1, 'rgba(0,0,0,0)');
+  sg.fillStyle = rg; sg.fillRect(0, 0, 256, 256);
+  var shadow = new THREE.Mesh(new THREE.PlaneGeometry(6.5, 4.6),
+    new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(shc), transparent: true, depthWrite: false }));
+  shadow.rotation.x = -Math.PI / 2; shadow.position.y = -1.45; scene.add(shadow);
+
+  // ---- اسکرول ----
+  var cur = { open: 0, rot: 0, tilt: 0.35, y: 0 }, tgt = { open: 0, rot: 0, tilt: 0.35, y: 0 };
+  function clamp(v) { return Math.max(0, Math.min(1, v)); }
+  function readScroll() {
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    var p = max > 0 ? clamp(window.scrollY / max) : 0;
+    tgt.open = clamp(p / 0.22);
+    tgt.rot = -0.5 + p * Math.PI * 2.4;
+    tgt.tilt = 0.35 - 0.25 * Math.sin(p * Math.PI);
+    tgt.y = Math.sin(p * Math.PI * 2) * 0.15;
+  }
+  window.addEventListener('scroll', readScroll, { passive: true });
+
+  // ---- ریسپانسیو: دوربین طوری دور می‌شه که لپ‌تاپ همیشه تو کادر جا بشه ----
+  function resize() {
+    var w = window.innerWidth, h = window.innerHeight, a = w / h;
+    renderer.setSize(w, h, false);
+    camera.aspect = a;
+    camera.position.z = Math.max(8, 6.8 / a);
+    camera.position.y = 2.4 * camera.position.z / 8;
+    camera.lookAt(0, 0.5, 0);
+    camera.updateProjectionMatrix();
+    readScroll();
+  }
+  window.addEventListener('resize', resize);
+
+  function frame() {
+    for (var k in cur) cur[k] += (tgt[k] - cur[k]) * 0.08;
+    hinge.rotation.x = -cur.open * 1.95;
+    laptop.rotation.y = cur.rot;
+    laptop.rotation.x = cur.tilt;
+    laptop.position.y = -0.2 + cur.y;
+    renderer.render(scene, camera);
+    requestAnimationFrame(frame);
+  }
+  resize(); frame();
+});
+</script>
+    <link rel="stylesheet" href="محتوا/css/css.css">
+</head>
+<body>
+        <header class="mother-box">
+            <p class="par">parham</p>
+            <div class="child">
+                <p>
+                   welcome to <br> my first <br>project 
+                </p>
+                <br>
+                <div class="link-box">
+                <a href="" class="link1">GET THEM NOW</a>
+                <a href="" class="link2">SEE FEATURES</a>
+                </div>
+            </div>
+        </header>
+        <section class="father-box">
+            <div class="servises">
+                <div class="servis">
+                    <img src="محتوا/imgs/mobile_3_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="" class="icon1">
+                    <h3>تعمیرات موبایل </h3>
+                    <p>خوش امدید به اولین پروژه<br> من با قالب فریم که من برای اولین بار در حال زدن <br>یک سایت کامل هستم که حسابی وقتمو <br>در گیر میکنه در حالی که من خیلی کار دارم </p>
+                    <a href="">learn more <img src="محتوا/imgs/chevron_forward_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt=""></a>
+                </div>
+                <div class="servis">
+                    <img src="محتوا/imgs/credit_card_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="" class="icon1">
+                    <h3>کیف پول </h3>
+                    <p>خوش امدید به اولین پروژه<br> من با قالب فریم که من برای اولین بار در حال زدن <br>یک سایت کامل هستم که حسابی وقتمو <br>در گیر میکنه در حالی که من خیلی کار دارم </p>
+                    <a href="">learn more <img src="محتوا/imgs/chevron_forward_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt=""></a>
+                </div>
+                <div class="servis">
+                    <img src="محتوا/imgs/bar_chart_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="" class="icon1">
+                    <h3> افزایش سرمایه </h3>
+                    <p>خوش امدید به اولین پروژه<br> من با قالب فریم که من برای اولین بار در حال زدن <br>یک سایت کامل هستم که حسابی وقتمو <br>در گیر میکنه در حالی که من خیلی کار دارم </p>
+                    <a href="">learn more <img src="محتوا/imgs/chevron_forward_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt=""></a>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div>
+                <img src="" alt="">
+                <h4></h4>
+            </div>
+        </section>
+</body>
+</html>
